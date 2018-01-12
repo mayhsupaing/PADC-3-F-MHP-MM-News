@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cv_international_news"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="12dp"
+    app:cardElevation="4dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/tv_international_news_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Rail delays /"
+            android:paddingLeft="8dp"
+            android:paddingTop="8dp"
+            android:textColor="@color/primary_blue"
+            android:textSize="16sp"/>
+
+        <TextView
+            android:id="@+id/tv_international_new_sub_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/international_news_sub_title"
+            android:layout_below="@id/tv_international_news_title"
+            android:paddingLeft="8dp"
+            android:textSize="16sp"/>
+
+        <TextView
+            android:id="@+id/tv_international_news_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="44m"
+            android:layout_below="@id/tv_international_new_sub_title"
+            android:drawableLeft="@drawable/ic_access_time_black_16dp"
+            android:drawablePadding="4dp"
+            android:paddingLeft="8dp"
+            android:paddingTop="4dp" />
+
+        <ImageView
+            android:id="@+id/iv_international_news_image"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_below="@id/tv_international_news_time"
+            android:layout_marginTop="8dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/img_dummy_international_news" />
+
+    </RelativeLayout>
+</android.support.v7.widget.CardView>

@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cv_international_live_news"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="12dp"
+    app:cardElevation="4dp">
+
+
+    <RelativeLayout
+        android:id="@+id/fl_international_news_title_section"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/primary_red">
+
+        <TextView
+            android:id="@+id/tv_live"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/ic_live_16dp"
+            android:drawablePadding="4dp"
+            android:paddingLeft="8dp"
+            android:text="Live"
+            android:textColor="@color/white_text" />
+
+        <TextView
+            android:id="@+id/international_live_news_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/tv_live"
+            android:paddingLeft="12dp"
+            android:paddingTop="8dp"
+            android:text="@string/international_live_news_title"
+            android:textColor="@color/white_text"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/tv_international_live_new_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/international_live_news_title"
+            android:drawableLeft="@drawable/ic_access_time_16dp"
+            android:drawablePadding="4dp"
+            android:paddingLeft="8dp"
+            android:paddingTop="4dp"
+            android:text="19m"
+            android:textColor="@color/white_text" />
+
+        <View
+            android:id="@+id/v_international_news_divider"
+            style="@style/International_news_divider"
+            android:layout_below="@id/international_live_news_title"
+            android:layout_marginLeft="12dp"
+            android:layout_toRightOf="@id/tv_international_live_new_time"
+            android:paddingTop="4dp" />
+
+        <TextView
+            android:id="@+id/tv_international_live_new_comment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/international_live_news_title"
+            android:layout_toRightOf="@id/v_international_news_divider"
+            android:drawableLeft="@drawable/ic_comment_white_16dp"
+            android:drawablePadding="8dp"
+            android:paddingLeft="12dp"
+            android:paddingTop="4dp"
+            android:text="788"
+            android:textColor="@color/white_text" />
+
+
+        <ImageView
+            android:id="@+id/iv_international_live_news_image"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_below="@id/tv_international_live_new_time"
+            android:layout_marginTop="12dp"
+            android:background="@color/white_background"
+            android:scaleType="fitXY"
+            android:src="@drawable/img_dummy_international_live_news" />
+
+        <TextView
+            android:id="@+id/tv_international_live_new_sub_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/iv_international_live_news_image"
+            android:background="@color/white_background"
+            android:paddingTop="12dp"
+            android:paddingBottom="12dp"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:text="@string/international_live_news_sub_title"
+            android:textSize="16sp" />
+
+    </RelativeLayout>
+
+
+</android.support.v7.widget.CardView>

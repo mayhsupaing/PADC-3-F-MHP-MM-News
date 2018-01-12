@@ -17,4 +17,14 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+    <style name="white_text_black_border">
+        <item name="android:textColor">@color/icons</item>
+        <item name="android:shadowDx">2</item>
+        <item name="android:shadowDy">2</item>
+        <item name="android:shadowRadius">2</item>
+        <item name="android:shadowColor">@color/full_black</item>
+    </style>
+
+
+
 </resources>
