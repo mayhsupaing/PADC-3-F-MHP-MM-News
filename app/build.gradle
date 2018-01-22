@@ -45,5 +45,7 @@ dependencies {
     implementation 'com.github.bumptech.glide:glide:4.4.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.4.0'
 
+    implementation 'net.aungpyaephyo:mmtextview:1.1'
+
 
 }

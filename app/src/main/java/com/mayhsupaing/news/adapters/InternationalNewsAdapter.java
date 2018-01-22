@@ -20,6 +20,8 @@ public class InternationalNewsAdapter extends RecyclerView.Adapter {
         LayoutInflater inflater=LayoutInflater.from(context);
         View newsInternational=inflater.inflate(R.layout.item_international_news,parent,false);
         ItemInternationalNewsViewHolder itemInternationalNewsViewHolder=new ItemInternationalNewsViewHolder(newsInternational);
+
+
         return itemInternationalNewsViewHolder;
     }
 
@@ -30,6 +32,6 @@ public class InternationalNewsAdapter extends RecyclerView.Adapter {
 
     @Override
     public int getItemCount() {
-        return 6;
+        return 3;
     }
 }

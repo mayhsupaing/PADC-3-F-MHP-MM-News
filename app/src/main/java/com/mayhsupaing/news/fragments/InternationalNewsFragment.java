@@ -12,7 +12,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.mayhsupaing.news.R;
-import com.mayhsupaing.news.adapters.InternationalLiveNewsAdapter;
 import com.mayhsupaing.news.adapters.InternationalNewsAdapter;
 
 import butterknife.BindView;
@@ -24,13 +23,9 @@ import butterknife.ButterKnife;
 
 public class InternationalNewsFragment extends Fragment {
 
-    @BindView(R.id.rv_international_live_news)
-    RecyclerView rvInternationalLiveNews;
-
     @BindView(R.id.rv_international_news)
     RecyclerView rvInternationalNews;
 
-    private InternationalLiveNewsAdapter mInternationalLiveNewsAdapter;
     private InternationalNewsAdapter mInternationalNewsAdapter;
 
     @Nullable
@@ -39,11 +34,6 @@ public class InternationalNewsFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_international_news, container, false);
         ButterKnife.bind(this, view);
 
-        mInternationalLiveNewsAdapter = new InternationalLiveNewsAdapter();
-        LinearLayoutManager internationalLiveNewsLinearLayoutManager = new LinearLayoutManager(getContext(),
-                LinearLayoutManager.VERTICAL, true);
-        rvInternationalLiveNews.setLayoutManager(internationalLiveNewsLinearLayoutManager);
-        rvInternationalLiveNews.setAdapter(mInternationalLiveNewsAdapter);
 
         mInternationalNewsAdapter = new InternationalNewsAdapter();
         LinearLayoutManager internationalNewsLinearLayoutManager = new LinearLayoutManager(getContext(),
@@ -51,9 +41,9 @@ public class InternationalNewsFragment extends Fragment {
         rvInternationalNews.setLayoutManager(internationalNewsLinearLayoutManager);
         rvInternationalNews.setAdapter(mInternationalNewsAdapter);
         rvInternationalNews.setNestedScrollingEnabled(false);
-
+/*
         GridLayoutManager manager = new GridLayoutManager(getActivity(), 2, GridLayoutManager.VERTICAL, false);
-        rvInternationalNews.setLayoutManager(manager);
+        rvInternationalNews.setLayoutManager(manager);*/
 
         return view;
 

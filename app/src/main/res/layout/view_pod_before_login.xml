@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<viewpods.BeforeLogInUserViewPod xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/user_profile_viewpot_height">
+
+    <ImageView
+        android:id="@+id/iv_login_bg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/img_dummy_drawer_background"
+        android:scaleType="centerCrop"/>
+
+    <Button
+        android:id="@+id/btn_to_register"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/lbl_to__register"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_margin="@dimen/margin_large"
+        style="@style/accent_button"
+        />
+
+    <Button
+        android:id="@+id/btn_to_login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/lbl_to__login"
+        android:layout_above="@id/btn_to_register"
+        android:layout_alignRight="@id/btn_to_register"
+        style="@style/accent_button"
+        />
+
+
+
+</viewpods.BeforeLogInUserViewPod>

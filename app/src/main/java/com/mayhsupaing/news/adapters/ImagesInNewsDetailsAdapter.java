@@ -7,16 +7,27 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.mayhsupaing.news.R;
+import com.mayhsupaing.news.data.vo.NewsVO;
 import com.mayhsupaing.news.viewitems.ImageInNewsDetailsViewItem;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Lenovo on 12/10/2017.
  */
 
 public class ImagesInNewsDetailsAdapter extends PagerAdapter {
+
+    private List<NewsVO> mImages;
+
+    public ImagesInNewsDetailsAdapter() {
+        mImages = new ArrayList<>();
+    }
+
     @Override
     public int getCount() {
-        return 5;
+        return mImages.size();
     }
 
     @Override
@@ -40,6 +51,9 @@ public class ImagesInNewsDetailsAdapter extends PagerAdapter {
         Context context = container.getContext();
         LayoutInflater layoutInflater = LayoutInflater.from(context);
         ImageInNewsDetailsViewItem view = (ImageInNewsDetailsViewItem) layoutInflater.inflate(R.layout.item_news_details_images, container, false);
+
+        view.setData(mImages.get(position));
+
         container.addView(view);
         return view;
 

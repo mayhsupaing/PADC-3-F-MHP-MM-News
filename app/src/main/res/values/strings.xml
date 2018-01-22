@@ -17,5 +17,17 @@
     <string name="top_sport_news_title">Real Madrid don\'t want to play beautiful football like Barcelona</string>
     <string name="international_live_news_title">Brexit: penalising UK banks \'will pose financial risk to EU\'</string>
     <string name="international_live_news_sub_title"><font color='#2196F3'>UK aid firms/</font> Millions in EU funds may be lost if no deal agreed</string>
-    <string name="international_news_sub_title">Chris Grayling criticised for blaming rail delays on \'militant unions\'</string>
+    <string name="international_secondary_news"><font color='#2196F3'>Chris Grayling /</font> criticised for blaming rail delays on \'militant unions\'</string>
+    <string name="menu_item_all_news">All News</string>
+    <string name="menu_item_news_by_category">News By Category</string>
+    <string name="title_all_news">All News</string>
+
+    <string name="lbl_to__login">Login 0င္ရန္</string>
+    <string name="lbl_to__register">Register လုပ္ရန္</string>
+
+    <string name="btn_forgot_password"><![CDATA[<u><i>Password မေ့သွားလို့</i></u>]]></string>
+    <string name="btn_new_seller_register"><![CDATA[<u><i>Register လုပရန်္</i></u>]]></string>
+    <string name="btn_to_login"><u><i>To Login</i></u></string>
+    <string name="btn_to_logout">Log Out</string>
+
 </resources>

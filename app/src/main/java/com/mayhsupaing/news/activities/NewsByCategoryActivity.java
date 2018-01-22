@@ -1,5 +1,7 @@
 package com.mayhsupaing.news.activities;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.speech.SpeechRecognizer;
 import android.support.annotation.Nullable;
@@ -8,6 +10,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
 
 
@@ -38,6 +41,12 @@ public class NewsByCategoryActivity extends AppCompatActivity {
 
     private NewsByCategoryAdapter mNewsByCategoryAdapter;
 
+    //static factory method.
+    public static Intent newIntent(Context context){
+        Intent intent=new Intent(context,NewsByCategoryActivity.class);
+        return intent;
+    }
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,6 +56,7 @@ public class NewsByCategoryActivity extends AppCompatActivity {
 
         setSupportActionBar(toolbar);
 
+        //Back Button
         if(getSupportActionBar()!=null) {
             getSupportActionBar().setTitle(R.string.title_news_by_category);
             getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_back_24dp);
@@ -66,5 +76,14 @@ public class NewsByCategoryActivity extends AppCompatActivity {
 
         vpNewsByCategory.setOffscreenPageLimit(mNewsByCategoryAdapter.getCount());
 
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if(item.getItemId()==android.R.id.home)// checked if we clicked home button
+        {
+            onBackPressed(); //call previous screen
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
