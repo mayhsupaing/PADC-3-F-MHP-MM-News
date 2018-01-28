@@ -1,4 +1,4 @@
-package viewpods;
+package com.mayhsupaing.news.viewpods;
 
 import android.content.Context;
 import android.content.Intent;
@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.mayhsupaing.news.R;
 import com.mayhsupaing.news.activities.NewsByCategoryActivity;
+import com.mayhsupaing.news.data.models.LogInUserModel;
 import com.mayhsupaing.news.data.vo.LogInUserVO;
 import com.mayhsupaing.news.delegates.LogInUserDelegate;
 
@@ -38,6 +39,8 @@ public class LogInUserViewPod extends RelativeLayout {
     TextView tvName;
 
     private LogInUserDelegate mDelegate;
+
+
 
     public LogInUserViewPod(Context context) {
         super(context);

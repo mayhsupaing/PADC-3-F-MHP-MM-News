@@ -7,15 +7,12 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.mayhsupaing.news.R;
-import com.mayhsupaing.news.data.vo.LogInUserVO;
 import com.mayhsupaing.news.data.vo.NewsVO;
 import com.mayhsupaing.news.delegates.NewsActionDelegate;
 import com.mayhsupaing.news.viewholders.ItemNewsViewHolder;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import viewpods.LogInUserViewPod;
 
 /**
  * Created by Lenovo on 12/3/2017.

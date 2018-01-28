@@ -38,8 +38,7 @@ import org.greenrobot.eventbus.ThreadMode;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import viewpods.AccountControlViewPod;
-import viewpods.BeforeLogInUserViewPod;
+import com.mayhsupaing.news.viewpods.AccountControlViewPod;
 
 
 public class MainActivity extends AppCompatActivity implements NewsActionDelegate, BeforeLoginDelegate,
@@ -208,7 +207,7 @@ public class MainActivity extends AppCompatActivity implements NewsActionDelegat
     @Override
     public void onTapLogOut()
     {
-        LogInUserModel.getsObjInstance().logOut();
+        LogInUserModel.getsObjInstance(getApplicationContext()).logOut();
     }
 
     public void onTapRegisterLogOut(){

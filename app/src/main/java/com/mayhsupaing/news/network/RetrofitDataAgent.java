@@ -1,5 +1,8 @@
 package com.mayhsupaing.news.network;
 
+import android.content.Context;
+import android.util.Log;
+
 import com.google.gson.Gson;
 import com.mayhsupaing.news.events.LoadedNewsEvent;
 import com.mayhsupaing.news.events.SuccessLoginEvent;
@@ -79,7 +82,7 @@ public class RetrofitDataAgent implements NewsDataAgent {
     }
 
     @Override
-    public void loginUser(String phoneNo, String password) {
+    public void loginUser(final Context context, String phoneNo, String password) {
 
         Call<GetLogInResponse> getLogInResponseCall= newsApi.loginUser(phoneNo,password);
 
@@ -89,7 +92,7 @@ public class RetrofitDataAgent implements NewsDataAgent {
             public void onResponse(Call<GetLogInResponse> call, Response<GetLogInResponse> response) {
                 GetLogInResponse getLogInResponse=response.body();
                 if(getLogInResponse!=null) {
-                    SuccessLoginEvent event = new SuccessLoginEvent(getLogInResponse.getLoginUser());
+                    SuccessLoginEvent event = new SuccessLoginEvent(getLogInResponse.getLoginUser(),context);
                     EventBus.getDefault().post(event);
                 }
             }
@@ -99,6 +102,7 @@ public class RetrofitDataAgent implements NewsDataAgent {
 
             }
         });
+        Log.d("","test log");
     }
 
     @Override

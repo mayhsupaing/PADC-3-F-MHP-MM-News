@@ -7,17 +7,17 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
 import com.mayhsupaing.news.R;
+import com.mayhsupaing.news.delegates.LogInScreenDelegate;
 import com.mayhsupaing.news.fragments.LoginFragment;
 import com.mayhsupaing.news.fragments.RegisterFragment;
 
 import butterknife.ButterKnife;
-import viewpods.LogInUserViewPod;
 
 /**
  * Created by Lenovo on 1/20/2018.
  */
 
-public class AccountControlActivity extends AppCompatActivity {
+public class AccountControlActivity extends AppCompatActivity implements LogInScreenDelegate{
 
 
     //define key
@@ -64,5 +64,15 @@ public class AccountControlActivity extends AppCompatActivity {
     }
 
 
-
+    /**
+     * to navigate register screen.
+     */
+    @Override
+    public void onTapToRegister() {
+        getSupportFragmentManager().beginTransaction()
+                .setCustomAnimations(R.anim.enter,R.anim.exit,R.anim.pop_enter,R.anim.pop_exit)
+                .replace(R.id.fl_container,new RegisterFragment())
+                .addToBackStack("ToRegister")
+                .commit();
+    }
 }

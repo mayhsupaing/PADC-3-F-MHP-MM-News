@@ -1,4 +1,4 @@
-package viewpods;
+package com.mayhsupaing.news.viewpods;
 
 import android.content.Context;
 import android.content.Intent;

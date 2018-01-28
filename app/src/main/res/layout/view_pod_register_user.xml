@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<viewpods.RegisterUserViewPod xmlns:android="http://schemas.android.com/apk/res/android"
+<com.mayhsupaing.news.viewpods.RegisterUserViewPod xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="@dimen/user_profile_viewpot_height">
 
@@ -64,4 +64,4 @@
         android:layout_marginRight="@dimen/margin_medium_2"
         style="@style/accent_button"/>
 
-</viewpods.RegisterUserViewPod>
+</com.mayhsupaing.news.viewpods.RegisterUserViewPod>

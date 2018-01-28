@@ -87,7 +87,7 @@
         />
 
     <net.aungpyaephyo.mmtextview.components.MMTextView
-        android:id="@+id/btn_new_seller_register"
+        android:id="@+id/btn_to_register"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/btn_new_seller_register"

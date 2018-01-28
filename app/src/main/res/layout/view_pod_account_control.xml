@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<viewpods.AccountControlViewPod xmlns:android="http://schemas.android.com/apk/res/android"
+<com.mayhsupaing.news.viewpods.AccountControlViewPod xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="@dimen/user_profile_viewpot_height"
     >
@@ -25,4 +25,4 @@
         android:layout_height="match_parent"
         />
 
-</viewpods.AccountControlViewPod>
+</com.mayhsupaing.news.viewpods.AccountControlViewPod>

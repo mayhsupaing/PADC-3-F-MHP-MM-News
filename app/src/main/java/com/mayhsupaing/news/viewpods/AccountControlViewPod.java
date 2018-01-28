@@ -1,6 +1,7 @@
-package viewpods;
+package com.mayhsupaing.news.viewpods;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
@@ -39,6 +40,7 @@ public class AccountControlViewPod extends FrameLayout {
     @BindView(R.id.vp_register_user)
     RegisterUserViewPod vpRegisterUser;
 
+
     public AccountControlViewPod(@NonNull Context context) {
         super(context);
     }
@@ -57,7 +59,6 @@ public class AccountControlViewPod extends FrameLayout {
         ButterKnife.bind(this, this);
 
         refreshUserSession();
-        refreshRegisterUserSession();
 
         EventBus.getDefault().register(this);
     }
@@ -71,7 +72,7 @@ public class AccountControlViewPod extends FrameLayout {
         vpLoginUser.setDelegate(logInUserDelegate);
     }
 
-    public void setDelegate(RegisterUserDelegate registerUserDelegate){
+    public void setDelegate(RegisterUserDelegate registerUserDelegate) {
         vpRegisterUser.setDelegate(registerUserDelegate);
     }
 
@@ -80,12 +81,18 @@ public class AccountControlViewPod extends FrameLayout {
      */
 
     public void refreshUserSession() {
-        if (LogInUserModel.getsObjInstance().isUserLogIn()) {
+        if (LogInUserModel.getsObjInstance(getContext()).isUserLogIn()) {
             vpBeforeLogin.setVisibility(View.GONE);
+            vpRegisterUser.setVisibility(View.GONE);
             vpLoginUser.setVisibility(View.VISIBLE);
+        } else if (RegisterUserModel.getsObjInstance().isUserRegister()) {
+            vpBeforeLogin.setVisibility(View.GONE);
+            vpRegisterUser.setVisibility(View.VISIBLE);
+            vpLoginUser.setVisibility(View.GONE);
         } else {
             vpBeforeLogin.setVisibility(View.VISIBLE);
             vpLoginUser.setVisibility(View.GONE);
+            vpRegisterUser.setVisibility(View.GONE);
         }
     }
 
@@ -109,15 +116,6 @@ public class AccountControlViewPod extends FrameLayout {
      * Register.
      */
 
-    public void refreshRegisterUserSession() {
-        if (RegisterUserModel.getsObjInstance().isUserRegister()) {
-            vpBeforeLogin.setVisibility(View.GONE);
-            vpRegisterUser.setVisibility(View.VISIBLE);
-        } else {
-            vpBeforeLogin.setVisibility(View.VISIBLE);
-            vpRegisterUser.setVisibility(View.GONE);
-        }
-    }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onRegisterUserSuccess(SuccessRegisterEvent event) {
