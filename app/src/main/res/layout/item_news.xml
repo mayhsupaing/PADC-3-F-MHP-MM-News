@@ -111,10 +111,13 @@
 
 
             <FrameLayout
+                android:id="@+id/fl_send_to"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:padding="8dp">
+                android:padding="8dp"
+                android:foreground="@drawable/ripple_primary"
+                android:clickable="true">
 
                 <TextView
                     android:id="@+id/btn_send"

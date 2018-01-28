@@ -112,4 +112,9 @@ public class LogInUserModel {
         UserLogOutEvent event = new UserLogOutEvent();
         EventBus.getDefault().post(event);
     }
+
+    //for dialog box
+    public LogInUserVO getLoginUser(){
+        return mLogInUser;
+    }
 }

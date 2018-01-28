@@ -1,7 +1,6 @@
 package com.mayhsupaing.news.viewpods;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
@@ -83,8 +82,8 @@ public class AccountControlViewPod extends FrameLayout {
     public void refreshUserSession() {
         if (LogInUserModel.getsObjInstance(getContext()).isUserLogIn()) {
             vpBeforeLogin.setVisibility(View.GONE);
-            vpRegisterUser.setVisibility(View.GONE);
             vpLoginUser.setVisibility(View.VISIBLE);
+            vpRegisterUser.setVisibility(View.GONE);
         } else if (RegisterUserModel.getsObjInstance().isUserRegister()) {
             vpBeforeLogin.setVisibility(View.GONE);
             vpRegisterUser.setVisibility(View.VISIBLE);

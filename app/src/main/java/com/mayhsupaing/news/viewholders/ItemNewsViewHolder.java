@@ -2,6 +2,7 @@ package com.mayhsupaing.news.viewholders;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -51,11 +52,17 @@ public class ItemNewsViewHolder extends RecyclerView.ViewHolder {
         mNewsActionDelegate=newsActionDelegate;
     }
 
+    //To News Detail Activity.
     @OnClick(R.id.cv_news_items)
     public void OnNewsItemTap(View view) {
         /*Toast.makeText(view.getContext(), "News items", Toast.LENGTH_LONG).show();*/
 
         mNewsActionDelegate.onTapNewsItem(mNews);
+    }
+
+    @OnClick(R.id.fl_send_to)
+    public void onTapSendTo(View view){
+        mNewsActionDelegate.onTapSendToButton(mNews);
     }
 
     public void setNews(NewsVO news){

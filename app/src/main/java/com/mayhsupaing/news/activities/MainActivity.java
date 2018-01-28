@@ -1,13 +1,21 @@
 package com.mayhsupaing.news.activities;
 
+import android.Manifest;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.design.widget.BaseTransientBottomBar;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.ShareCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -16,6 +24,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.mayhsupaing.news.MMNewsApp;
 import com.mayhsupaing.news.R;
@@ -38,11 +47,12 @@ import org.greenrobot.eventbus.ThreadMode;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+
 import com.mayhsupaing.news.viewpods.AccountControlViewPod;
 
 
 public class MainActivity extends AppCompatActivity implements NewsActionDelegate, BeforeLoginDelegate,
-        LogInUserDelegate,RegisterUserDelegate{
+        LogInUserDelegate, RegisterUserDelegate {
 
 
     @BindView(R.id.rv_news)
@@ -103,8 +113,8 @@ public class MainActivity extends AppCompatActivity implements NewsActionDelegat
             }
         });
 
-        vpAccountControl= (AccountControlViewPod) navigationView.getHeaderView(0);
-        vpAccountControl.setDelegate((BeforeLoginDelegate)this);
+        vpAccountControl = (AccountControlViewPod) navigationView.getHeaderView(0);
+        vpAccountControl.setDelegate((BeforeLoginDelegate) this);
         vpAccountControl.setDelegate((LogInUserDelegate) this);
         vpAccountControl.setDelegate((RegisterUserDelegate) this);
 
@@ -155,12 +165,83 @@ public class MainActivity extends AppCompatActivity implements NewsActionDelegat
     }
 
 
+    //Implicit Intent
+    //Phone Call action
     @OnClick(R.id.fab)
     public void onTapFab(View view) {
-        Snackbar.make(view, "Replace with your own action - ButterKnife", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show();
+       /* String numberToCall = "+959765640635"; //String data
+        CallToNumber(numberToCall);
+*/
+        /*Snackbar.make(view, "Replace with your own action - ButterKnife", Snackbar.LENGTH_LONG)
+                .setAction("Action", null).show();*/
+
+        showConfirmDialog();
     }
 
+    @Override
+    public void onRequestPermissionsResult(int requestCode,
+                                           @NonNull String[] permissions,
+                                           @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == 100) {
+            //request call phone permission
+            //length>0 user make at least one permission
+            //grantResults[0] i.e only one permission
+
+            if (grantResults.length > 0
+                    && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+
+                String numberToCall = "+959765640635"; //String data
+                CallToNumber(numberToCall);
+            }
+        }
+    }
+
+    private void CallToNumber(String numberToCall) {
+
+        Uri numberToCallUri = Uri.parse("tel:" + numberToCall); //change as Uri.Unit resource identifier. protocol-tel
+        Intent intentToCall = new Intent(Intent.ACTION_CALL, numberToCallUri);
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE)
+                != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+
+
+            //Request permission
+            ActivityCompat.requestPermissions(this,
+                    new String[]{Manifest.permission.CALL_PHONE},
+                    100);
+            return;
+        }
+        startActivity(intentToCall);
+    }
+
+    private void showConfirmDialog(){
+        AlertDialog.Builder builder=new AlertDialog.Builder(this);
+        builder.setTitle("Confirmation")
+                .setCancelable(false)
+                .setMessage(getResources().getString(R.string.msg_to_exit,
+                        LogInUserModel.getsObjInstance(getApplicationContext()).getLoginUser().getName()))
+                .setPositiveButton("Sure", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int id) {
+                        Snackbar.make(rvNews,"OK, Your will exit in hour",BaseTransientBottomBar.LENGTH_SHORT).show();
+                    }
+                })
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Toast.makeText(getApplicationContext(),"This is the right choice",Toast.LENGTH_SHORT).show();
+                    }
+                });
+        AlertDialog dialog=builder.create();
+        dialog.show();
+    }
 
     @Override
     public void onTapNewsItem(NewsVO tappedNews) {
@@ -174,8 +255,26 @@ public class MainActivity extends AppCompatActivity implements NewsActionDelegat
 
     }
 
+    //Implicit intent
+    //Shared Action
     @Override
-    public void onTapSendToButton() {
+    public void onTapSendToButton(NewsVO news) {
+        /*Intent intent=new Intent(Intent.ACTION_SEND); */
+
+        //how do you want to shared your content.
+        Intent shareIntent = ShareCompat
+                .IntentBuilder
+                .from(this)
+                .setType("text/plain")
+                .setText(news.getBrief())
+                .getIntent();
+
+        //check if there is any app to handle. !=null at least there is one app.
+        if (shareIntent.resolveActivity(getPackageManager()) != null) {
+            startActivity(shareIntent);
+        } else {
+            Snackbar.make(rvNews, "No app to handle shared action", BaseTransientBottomBar.LENGTH_INDEFINITE);
+        }
 
     }
 
@@ -205,12 +304,11 @@ public class MainActivity extends AppCompatActivity implements NewsActionDelegat
     }
 
     @Override
-    public void onTapLogOut()
-    {
+    public void onTapLogOut() {
         LogInUserModel.getsObjInstance(getApplicationContext()).logOut();
     }
 
-    public void onTapRegisterLogOut(){
+    public void onTapRegisterLogOut() {
         RegisterUserModel.getsObjInstance().logOut();
     }
 
