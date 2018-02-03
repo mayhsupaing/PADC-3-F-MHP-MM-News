@@ -7,4 +7,6 @@ package com.mayhsupaing.news.delegates;
 public interface LogInUserDelegate {
 
     void onTapLogOut();
+
+    void onTapLoginUser();
 }

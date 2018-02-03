@@ -29,17 +29,29 @@
         </android.support.design.widget.AppBarLayout>
 
 
-        <RelativeLayout
+        <android.support.v4.widget.SwipeRefreshLayout
+            android:id="@+id/swipe_refresh_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/rv_news"
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="match_parent">
 
-        </RelativeLayout>
+                <include
+                    android:id="@+id/vp_empty_view"
+                    layout="@layout/view_pod_empty"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rv_news"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            </RelativeLayout>
+        </android.support.v4.widget.SwipeRefreshLayout>
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/fab"
@@ -57,9 +69,9 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         app:headerLayout="@layout/view_pod_account_control"
-        app:menu="@menu/left_menu"
         app:itemIconTint="#0F0"
-        app:itemTextColor="@drawable/state_left_menu_item"/>
+        app:itemTextColor="@drawable/state_left_menu_item"
+        app:menu="@menu/left_menu" />
 
 
 </android.support.v4.widget.DrawerLayout>

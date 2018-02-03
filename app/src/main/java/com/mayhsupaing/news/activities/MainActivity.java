@@ -1,6 +1,7 @@
 package com.mayhsupaing.news.activities;
 
 import android.Manifest;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -15,6 +16,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ShareCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -24,6 +26,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.mayhsupaing.news.MMNewsApp;
@@ -51,7 +54,8 @@ import butterknife.OnClick;
 import com.mayhsupaing.news.viewpods.AccountControlViewPod;
 
 
-public class MainActivity extends AppCompatActivity implements NewsActionDelegate, BeforeLoginDelegate,
+
+public class MainActivity extends BaseActivity implements NewsActionDelegate, BeforeLoginDelegate,
         LogInUserDelegate, RegisterUserDelegate {
 
 
@@ -70,11 +74,19 @@ public class MainActivity extends AppCompatActivity implements NewsActionDelegat
     @BindView(R.id.drawer_layout)
     DrawerLayout drawerLayout;
 
+    @BindView(R.id.vp_empty_view)
+    RelativeLayout emptyViewPod;
+
+    @BindView(R.id.swipe_refresh_layout)
+    SwipeRefreshLayout swipeRefreshLayout;
+
     private NewsAdapter mNewsAdapter;
 
  /*   private BeforeLogInUserViewPod vpBeforeLogInDelegate;*/
 
     private AccountControlViewPod vpAccountControl;
+
+    private ProgressDialog mProgressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -118,8 +130,23 @@ public class MainActivity extends AppCompatActivity implements NewsActionDelegat
         vpAccountControl.setDelegate((LogInUserDelegate) this);
         vpAccountControl.setDelegate((RegisterUserDelegate) this);
 
+        //pull to refresh
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                NewsModel.getsObjInstance().loadNews();
+            }
+        });
+
+        //soft gesture
+        swipeRefreshLayout.setRefreshing(true);
         //call the method of singleton pattern
         NewsModel.getsObjInstance().loadNews();
+
+        //hard gesture
+        mProgressDialog=new ProgressDialog(this);
+        mProgressDialog.setMessage("Please wait while data is loading");
+        mProgressDialog.show();
 
         HttpUrlConnectionDataAgent.getsObjInstance().loadNews();
 
@@ -221,8 +248,8 @@ public class MainActivity extends AppCompatActivity implements NewsActionDelegat
         startActivity(intentToCall);
     }
 
-    private void showConfirmDialog(){
-        AlertDialog.Builder builder=new AlertDialog.Builder(this);
+    private void showConfirmDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Confirmation")
                 .setCancelable(false)
                 .setMessage(getResources().getString(R.string.msg_to_exit,
@@ -230,16 +257,16 @@ public class MainActivity extends AppCompatActivity implements NewsActionDelegat
                 .setPositiveButton("Sure", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int id) {
-                        Snackbar.make(rvNews,"OK, Your will exit in hour",BaseTransientBottomBar.LENGTH_SHORT).show();
+                        Snackbar.make(rvNews, "OK, Your will exit in hour", BaseTransientBottomBar.LENGTH_SHORT).show();
                     }
                 })
                 .setNegativeButton("No", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        Toast.makeText(getApplicationContext(),"This is the right choice",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "This is the right choice", Toast.LENGTH_SHORT).show();
                     }
                 });
-        AlertDialog dialog=builder.create();
+        AlertDialog dialog = builder.create();
         dialog.show();
     }
 
@@ -287,7 +314,16 @@ public class MainActivity extends AppCompatActivity implements NewsActionDelegat
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onNewsLoaded(LoadedNewsEvent event) {
         Log.d(MMNewsApp.LOG_TAG, "mmNewsLoaded" + event.getNewsList().size());
-        mNewsAdapter.setNews(event.getNewsList());
+
+        swipeRefreshLayout.setRefreshing(false);
+        mProgressDialog.dismiss(); //hard gesture
+
+        if (!event.getNewsList().isEmpty()) {
+            mNewsAdapter.setNews(event.getNewsList());
+            emptyViewPod.setVisibility(View.GONE);
+        } else {
+            emptyViewPod.setVisibility(View.VISIBLE);
+        }
     }
 
 
@@ -306,6 +342,12 @@ public class MainActivity extends AppCompatActivity implements NewsActionDelegat
     @Override
     public void onTapLogOut() {
         LogInUserModel.getsObjInstance(getApplicationContext()).logOut();
+    }
+
+    @Override
+    public void onTapLoginUser() {
+        Intent intent=UserProfileActivity.newIntent(getApplicationContext());
+        startActivity(intent);
     }
 
     public void onTapRegisterLogOut() {

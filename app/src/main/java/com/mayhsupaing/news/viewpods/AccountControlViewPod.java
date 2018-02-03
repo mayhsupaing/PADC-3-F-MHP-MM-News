@@ -23,6 +23,7 @@ import org.greenrobot.eventbus.ThreadMode;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * Created by Lenovo on 1/21/2018.
@@ -39,6 +40,8 @@ public class AccountControlViewPod extends FrameLayout {
     @BindView(R.id.vp_register_user)
     RegisterUserViewPod vpRegisterUser;
 
+
+    private LogInUserDelegate mLogInUserDelegate;
 
     public AccountControlViewPod(@NonNull Context context) {
         super(context);
@@ -69,6 +72,7 @@ public class AccountControlViewPod extends FrameLayout {
 
     public void setDelegate(LogInUserDelegate logInUserDelegate) {
         vpLoginUser.setDelegate(logInUserDelegate);
+        mLogInUserDelegate=logInUserDelegate;
     }
 
     public void setDelegate(RegisterUserDelegate registerUserDelegate) {
@@ -93,6 +97,11 @@ public class AccountControlViewPod extends FrameLayout {
             vpLoginUser.setVisibility(View.GONE);
             vpRegisterUser.setVisibility(View.GONE);
         }
+    }
+
+    @OnClick(R.id.vp_login_user)
+    public void onTapLoginUser(View view){
+        mLogInUserDelegate.onTapLoginUser(); //relay
     }
 
 
