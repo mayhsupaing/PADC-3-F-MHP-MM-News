@@ -21,7 +21,7 @@ import java.util.List;
 public class NewsAdapter extends RecyclerView.Adapter<ItemNewsViewHolder> {
     public NewsActionDelegate mNewsActionDelegate;
 
-    private List<NewsVO> mNewsList;
+    private List<NewsVO> mNewsList; //collection attribute
 
     //constructor
     public NewsAdapter(NewsActionDelegate newsActionDelegate) {

@@ -11,4 +11,8 @@ public interface NewsActionDelegate {
     void onTapCommentButton();
     void onTapSendToButton(NewsVO tappedNews);
     void onTapFavouriteButton();
+
+    void onTapLikeUser(NewsVO tappedNews);
+    void onTapCommentUser(NewsVO tappedNews);
+    void onTapSendToUser(NewsVO tappedNews);
 }

@@ -31,8 +31,8 @@ public class UserProfileActivity extends BaseActivity {
     ImageView ivProfileCover;
 
     //static factory method
-    public static Intent newIntent(Context context){
-        Intent intent=new Intent(context,UserProfileActivity.class);
+    public static Intent newIntent(Context context) {
+        Intent intent = new Intent(context, UserProfileActivity.class);
         return intent;
     }
 
@@ -40,40 +40,38 @@ public class UserProfileActivity extends BaseActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_profile);
-        ButterKnife.bind(this,this);
+        ButterKnife.bind(this, this);
     }
 
     //Choose Picture from Gallery
     @OnClick(R.id.iv_edit_profile)
-    public void onTapEditProfileImage(View view)
-    {
+    public void onTapEditProfileImage(View view) {
        /* Toast.makeText(getApplicationContext(),"Tap Edit Profile",Toast.LENGTH_SHORT).show();*/
-        Intent intent=new Intent(Intent.ACTION_OPEN_DOCUMENT);
+        Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
         intent.setType("image/*"); //mime type
-        startActivityForResult(intent,234);
+        startActivityForResult(intent, 234);
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode==234){
-            Uri originalUri=data.getData();
+        if (requestCode == 234) {
+            Uri originalUri = data.getData();
             Glide.with(getApplicationContext())
                     .load(originalUri)
                     .into(ivUserProfile);
-        }
-        else if(requestCode==345){
-            Bundle extras=data.getExtras();
-            Bitmap takenPicture= (Bitmap) extras.get("data");
+        } else if (requestCode == 345) {
+            Bundle extras = data.getExtras();
+            Bitmap takenPicture = (Bitmap) extras.get("data");
             ivProfileCover.setImageBitmap(takenPicture);
         }
     }
 
     //Taken Picture
     @OnClick(R.id.iv_edit_cover)
-    public void onTapEditCoverImage(View view){
-        Intent intent=new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        startActivityForResult(intent,345);
+    public void onTapEditCoverImage(View view) {
+        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        startActivityForResult(intent, 345);
     }
 
 

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/iv_app_icon"
+        android:layout_width="@dimen/app_icon"
+        android:layout_height="@dimen/app_icon"
+        android:src="@mipmap/ic_launcher"
+        android:layout_margin="@dimen/margin_medium"/>
+
+    <TextView
+        android:id="@+id/tv_like_user"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/lbl_like_user"
+        android:layout_toRightOf="@id/iv_app_icon"
+        android:layout_margin="@dimen/margin_medium_2"
+        android:textSize="@dimen/text_heading_1x"
+        android:fontFamily="sans-serif-condensed"/>
+
+    <ImageView
+        android:id="@+id/iv_close_dialog"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_cancel_24dp"
+        android:padding="@dimen/margin_medium_2"
+        android:layout_alignParentRight="true"
+        android:foreground="@drawable/ripple_primary"
+        android:clickable="true" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_like_user"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/iv_app_icon"/>
+
+
+</RelativeLayout>

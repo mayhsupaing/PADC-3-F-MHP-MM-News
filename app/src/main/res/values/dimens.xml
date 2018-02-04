@@ -41,4 +41,6 @@
     <dimen name="publication_distance">16dp</dimen>
     <dimen name="regular_user_profile">90dp</dimen>
     <dimen name="user_profile_viewpot_height">220dp</dimen>
+
+    <dimen name="app_icon">60dp</dimen>
 </resources>

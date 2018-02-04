@@ -40,6 +40,8 @@ import com.mayhsupaing.news.delegates.BeforeLoginDelegate;
 import com.mayhsupaing.news.delegates.LogInUserDelegate;
 import com.mayhsupaing.news.delegates.NewsActionDelegate;
 import com.mayhsupaing.news.delegates.RegisterUserDelegate;
+import com.mayhsupaing.news.dialogs.AddCommentDialog;
+import com.mayhsupaing.news.dialogs.LikeUsersDialog;
 import com.mayhsupaing.news.events.LoadedNewsEvent;
 import com.mayhsupaing.news.network.HttpUrlConnectionDataAgent;
 
@@ -279,7 +281,8 @@ public class MainActivity extends BaseActivity implements NewsActionDelegate, Be
 
     @Override
     public void onTapCommentButton() {
-
+        AddCommentDialog dialog=new AddCommentDialog(this);
+        dialog.show();
     }
 
     //Implicit intent
@@ -307,6 +310,23 @@ public class MainActivity extends BaseActivity implements NewsActionDelegate, Be
 
     @Override
     public void onTapFavouriteButton() {
+
+    }
+
+    @Override
+    public void onTapLikeUser(NewsVO tappedNews) {
+        LikeUsersDialog dialog=new LikeUsersDialog(this,tappedNews.getFavourites());
+
+        dialog.show();
+    }
+
+    @Override
+    public void onTapCommentUser(NewsVO tappedNews) {
+
+    }
+
+    @Override
+    public void onTapSendToUser(NewsVO tappedNews) {
 
     }
 

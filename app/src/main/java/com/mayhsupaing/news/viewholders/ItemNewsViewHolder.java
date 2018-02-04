@@ -39,6 +39,15 @@ public class ItemNewsViewHolder extends RecyclerView.ViewHolder {
     @BindView(R.id.iv_news)
     ImageView ivNews;
 
+    @BindView(R.id.tv_likes)
+    TextView tvLikes;
+
+    @BindView(R.id.tv_comments)
+    TextView tvComnents;
+
+    @BindView(R.id.tv_sent_to)
+    TextView tvSendTo;
+
     private NewsActionDelegate mNewsActionDelegate;
 
     private NewsVO mNews;
@@ -65,6 +74,26 @@ public class ItemNewsViewHolder extends RecyclerView.ViewHolder {
         mNewsActionDelegate.onTapSendToButton(mNews);
     }
 
+    @OnClick(R.id.tv_likes)
+    public void onTapLikeUser(View view){
+        mNewsActionDelegate.onTapLikeUser(mNews);
+    }
+
+    @OnClick(R.id.tv_comments)
+    public void onTapCommentsUser(View view){
+        mNewsActionDelegate.onTapCommentUser(mNews);
+    }
+
+    @OnClick(R.id.tv_sent_to)
+    public void onTapSendToUser(View view){
+        mNewsActionDelegate.onTapSendToUser(mNews);
+    }
+
+    @OnClick(R.id.fl_comments)
+    public void onTapAddComment(View view){
+        mNewsActionDelegate.onTapCommentButton();
+    }
+
     public void setNews(NewsVO news){
 
         mNews=news;
@@ -72,6 +101,8 @@ public class ItemNewsViewHolder extends RecyclerView.ViewHolder {
        tvPublicationTitle.setText(news.getPublication().getTitle());
        tvPostedDate.setText(news.getPostedDate());
        tvNewsBrief.setText(news.getBrief());
+
+
 
         Glide.with(ivPublicationLogo.getContext())
                 .load(news.getPublication().getLogo())
@@ -87,6 +118,14 @@ public class ItemNewsViewHolder extends RecyclerView.ViewHolder {
         {
             ivNews.setVisibility(View.GONE);
         }
+
+        tvLikes.setText(tvLikes.getContext().getResources()
+                .getString(R.string.format_like_user,news.getFavourites().size()));
+        tvComnents.setText(tvComnents.getContext().getResources()
+                .getString(R.string.format_comment_user,news.getComment().size()));
+        tvSendTo.setText(tvSendTo.getContext().getResources()
+                .getString(R.string.format_send_to_user,news.getSentTo().size()));
+
 
     }
 }

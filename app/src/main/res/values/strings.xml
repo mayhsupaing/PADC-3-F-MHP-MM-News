@@ -38,6 +38,13 @@
     <string name="lbl_user_phoneNo">Phone No:</string>
     <string name="lbl_user_email">Email:</string>
 
+    <!--dynamic string-->
+    <string name="format_like_user"><xlift:g id="no_of_likes">%1$d</xlift:g> Likes</string>
+    <string name="format_comment_user"> - <xlift:g id="no_of_comments">%1$d</xlift:g> Comments</string>
+    <string name="format_send_to_user"> - <xlift:g id="no_of_send_to">%1$d</xlift:g> Send To</string>
+
+    <string name="lbl_like_user">Like Users</string>
+    <string name="lbl_add_new_comment">Add New Comment</string>
 
 
 </resources>
