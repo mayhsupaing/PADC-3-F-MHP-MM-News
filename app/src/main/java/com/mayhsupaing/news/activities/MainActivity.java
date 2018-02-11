@@ -53,8 +53,10 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
+import com.mayhsupaing.news.services.SampleService;
 import com.mayhsupaing.news.viewpods.AccountControlViewPod;
 
+import java.util.Date;
 
 
 public class MainActivity extends BaseActivity implements NewsActionDelegate, BeforeLoginDelegate,
@@ -204,7 +206,9 @@ public class MainActivity extends BaseActivity implements NewsActionDelegate, Be
         /*Snackbar.make(view, "Replace with your own action - ButterKnife", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show();*/
 
-        showConfirmDialog();
+
+        /*showConfirmDialog();*/
+        startServiceComponment();
     }
 
     @Override
@@ -374,5 +378,12 @@ public class MainActivity extends BaseActivity implements NewsActionDelegate, Be
         RegisterUserModel.getsObjInstance().logOut();
     }
 
+    //service
+    //Explicit Intent (2)
+    private void startServiceComponment(){
+        Intent intent=SampleService.newIntent(getApplicationContext(),
+                new Date().toString());
+        startService(intent);
+    }
 
 }

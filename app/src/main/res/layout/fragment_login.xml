@@ -62,12 +62,25 @@
         android:foreground="@drawable/ripple_white"
         />
 
+    <Button
+        android:id="@+id/btn_login_with_google"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Log In with Google"
+        android:layout_below="@id/btn_login"
+        android:layout_alignLeft="@id/btn_login"
+        android:layout_alignRight="@id/btn_login"
+        android:layout_marginTop="@dimen/margin_medium"
+        android:background="@color/primary"
+        android:textColor="@color/white_text"
+        android:padding="@dimen/margin_medium"/>
+
     <net.aungpyaephyo.mmtextview.components.MMTextView
         android:id="@+id/btn_forgot_password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/btn_forgot_password"
-        android:layout_below="@id/btn_login"
+        android:layout_below="@id/btn_login_with_google"
         android:layout_alignRight="@id/btn_login"
         android:layout_marginTop="24dp"
         android:textColor="@color/primary"
@@ -97,6 +110,8 @@
         android:textColor="@color/primary"
         android:foreground="@drawable/ripple_primary"
         android:padding="8dp"/>
+
+
 
 
 

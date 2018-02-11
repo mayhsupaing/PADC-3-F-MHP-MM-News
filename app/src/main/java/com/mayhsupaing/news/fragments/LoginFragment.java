@@ -88,4 +88,9 @@ public class LoginFragment extends Fragment {
         super.onAttach(context);
         mLogInScreenDelegate= (LogInScreenDelegate) context;
     }
+
+    @OnClick(R.id.btn_login_with_google)
+    public void onTapLoginWithGoogle(View view){
+        mLogInScreenDelegate.onTapLogInWithGoogle();
+    }
 }

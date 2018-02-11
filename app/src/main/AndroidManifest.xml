@@ -47,7 +47,12 @@
 
         </activity>
 
+        <service android:name=".services.SampleService"/>
+
+
+
     </application>
+
 
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.CALL_PHONE"/>
